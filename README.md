@@ -1,7 +1,7 @@
 # Trabalho Final - Pós-Graduação em Ciência de Dados e Machine Learning
 **Nomes dos Integrantes:** 
 
-2- João Pedro Melo Rodrigues
+1- João Pedro Melo Rodrigues
 
 
 Este repositório foi criado como parte do trabalho final da pós-graduação em Ciência de Dados e Machine Learning. O objetivo deste projeto é aplicar os conhecimentos adquiridos durante o curso utilizando a metodologia CRISP-DM.
