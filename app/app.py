@@ -1,8 +1,8 @@
 import pickle
 
 import numpy as np
+from flasgger import Swagger, swag_from
 from flask import Flask, request, jsonify
-from flasgger import Swagger, LazyString, LazyJSONEncoder, swag_from
 
 app = Flask(__name__)
 # Embora nao seja uma boa ideia usar links relativos, como é uma POC, é ok
@@ -50,36 +50,34 @@ swagger = Swagger(app, template=swagger_template, config=swagger_config)
 @swag_from("docs/predict.yaml")
 @app.route("/predict", methods=["POST"])
 def predict():
-    data = {}  # dictionary to store result
-    data['code'] = 1
     data_n = request.get_json()
     try:
-        array = np.array(data_n["array"])
-
-    # for invalid data keys
+        array = np.array(data_n["data"])
     except KeyError:
-        return jsonify({"responseCode": "2", "responseDesc": "Invalid data Key"}), 400
+        return jsonify({
+            "data": None,
+            "mensagens": ["Não foi possível validar este array"]
+        }), 400
 
-    # if the input is empty
     if array is None:
-        print("Array Input Failed..")
-        data['response'] = 'Input Reading Error: Input is Empty'
-        return jsonify({"responseCode": "3", "responseDesc": "Input Reading Error: Input is Empty"}), 400
+        return jsonify({
+            "data": None,
+            "mensagens": ["Data é obrigatório"]
+        }), 400
 
     # if the input array is not the required size
-    elif len(array) != 11:
-        print("Array Input InComplete..")
-        data['response'] = 'Input Reading Error: Input is Incomplete'
-        return jsonify({"responseCode": "3", "responseDesc": "Input Reading Error: Input is Incomplete"}), 400
+    elif len(array) != 15:
+        return jsonify({
+            "data": None,
+            "mensagens": ["Data deve ter 15 posições, conforme documentação"]
+        }), 400
 
     else:
-        array = array.reshape(1, 11)
-        # prediction
+        array = array.reshape(1, 15)
         prediction = model.predict(array)
-        data['code'] = 0
-        data['response'] = 'Model prediction PASSED'
-        data['prediction'] = prediction
-        response = {"responseCode": "0", "responseDesc": "SUCCESS", "Wine Quality": prediction[0]}
+        response = {"data": {
+            "previsao": prediction[0]
+        }}
         return jsonify(response), 200
 
 
