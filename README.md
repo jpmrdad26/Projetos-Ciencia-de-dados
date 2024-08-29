@@ -6,6 +6,18 @@
 
 Este repositório foi criado como parte do trabalho final da pós-graduação em Ciência de Dados e Machine Learning. O objetivo deste projeto é aplicar os conhecimentos adquiridos durante o curso utilizando a metodologia CRISP-DM.
 
+## Objetivos do Projeto
+
+Nosso objetivo será investigar a relação entre o consumo de álcool, o índice de massa corporal (IMC) e a expectativa de vida.
+
+Seguiremos as seguintes etapas. 
+
+1. Entendimento do Problema.
+2. Realizar análise exploratória dos dados e Limpeza e preparação dos dados para modelagem..
+3. Desenvolvimento de modelos preditivos para a expectativa de vida.
+4. Avaliação e validação dos modelos desenvolvidos.
+5. Deployment.
+
 ## Estrutura do projeto
 
 Estrutura básica do projeto abaixo:
@@ -28,7 +40,9 @@ projeto-ciencia-de-dados
 
 Pasta ml = Pasta de machine learning e modelo estatistico
 
-Pasta app = Aplicacao flask para servir o modelo. Disponibilizada com docker. A imagem está disponivel no registry 
+Pasta app = Aplicacao flask para servir o modelo. Disponibilizada com docker. A imagem está disponivel no registry.
+
+É valido ressaltar que a api está disponivel em EM_BREVE
 
 ## Machine Learning - Pasta ml
 
@@ -36,23 +50,15 @@ Pasta app = Aplicacao flask para servir o modelo. Disponibilizada com docker. A 
 
 O arquivo utilizado para este projeto é `Life Expectancy Data.csv`, presente dentro de ml/data, disponivel em https://www.kaggle.com/datasets/kumarajarshi/life-expectancy-who?resource=download que contém dados relevantes para a análise proposta. Este arquivo inclui informações sobre expectativa de vida e variáveis associadas, que serão exploradas e modeladas durante o desenvolvimento do projeto.
 
+## Aplicação - Pasta app
 
-## Objetivos do Projeto
+### Deployment
 
-Nosso objetivo será investigar a relação entre o consumo de álcool, o índice de massa corporal (IMC) e a expectativa de vida.
-
-Seguiremos as seguintes etapas. 
-
-1. Entendimento do Problema.
-2. Realizar análise exploratória dos dados e Limpeza e preparação dos dados para modelagem..
-3. Desenvolvimento de modelos preditivos para a expectativa de vida.
-4. Avaliação e validação dos modelos desenvolvidos.
-5. Deployment.
-
+O deploy é feito via docker. Foi optado por nao usar compose, para simplicidade. Entretanto, nada impediria de usar compose, charts ou qualquer outra estrutura no k8s.
 
 ## Executando
 
-1 - Gere o modelo. Execute no shell de preferencia:
+1 - A partir da raiz do projeto, gere o modelo. Execute no shell de preferencia:
 
 ```powershell
 cd ml
@@ -71,7 +77,7 @@ pip install XGBoost
 jupyter notebook
 ```
 
-3 - Gere a imagem do docker
+3 - A partir da raiz do projeto, gere a imagem do docker
 
 ```powershell
 cd app
