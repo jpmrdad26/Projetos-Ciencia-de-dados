@@ -1,14 +1,40 @@
 # Trabalho Final - Pós-Graduação em Ciência de Dados e Machine Learning
+
 **Nomes dos Integrantes:** 
 
 1- João Pedro Melo Rodrigues
 
-
 Este repositório foi criado como parte do trabalho final da pós-graduação em Ciência de Dados e Machine Learning. O objetivo deste projeto é aplicar os conhecimentos adquiridos durante o curso utilizando a metodologia CRISP-DM.
 
-## Arquivo de Dados
+## Estrutura do projeto
 
-O arquivo utilizado para este projeto é `Life Expectancy Data.csv`, disponivel em https://www.kaggle.com/datasets/kumarajarshi/life-expectancy-who?resource=download que contém dados relevantes para a análise proposta. Este arquivo inclui informações sobre expectativa de vida e variáveis associadas, que serão exploradas e modeladas durante o desenvolvimento do projeto.
+Estrutura básica do projeto abaixo:
+
+```
+projeto-ciencia-de-dados
+│   README.md
+└───ml
+│   │   data
+│   │   CRISP-DM Projeto Final.ipynb
+│   └───modelo
+│       │   normalizer.pkl
+│       │   model.pkl
+│       │   encoder.pkl
+│   
+└───app
+    │   **.py
+    |   Dockerfile
+```
+
+Pasta ml = Pasta de machine learning e modelo estatistico
+
+Pasta app = Aplicacao flask para servir o modelo. Disponibilizada com docker. A imagem está disponivel no registry 
+
+## Machine Learning - Pasta ml
+
+### Arquivo de Dados
+
+O arquivo utilizado para este projeto é `Life Expectancy Data.csv`, presente dentro de ml/data, disponivel em https://www.kaggle.com/datasets/kumarajarshi/life-expectancy-who?resource=download que contém dados relevantes para a análise proposta. Este arquivo inclui informações sobre expectativa de vida e variáveis associadas, que serão exploradas e modeladas durante o desenvolvimento do projeto.
 
 
 ## Objetivos do Projeto
@@ -26,9 +52,10 @@ Seguiremos as seguintes etapas.
 
 ## Executando
 
-Execute no shell de preferencia:
+1 - Gere o modelo. Execute no shell de preferencia:
 
 ```powershell
+cd ml
 pip install numpy
 pip install flask
 pip install pandas 
@@ -38,4 +65,20 @@ pip install plotly.express
 pip install XGBoost
 ```
 
-Após isto, pode executar o notebook normalmente
+2 - Após isto, pode executar o notebook normalmente
+
+```powershell
+jupyter notebook
+```
+
+3 - Gere a imagem do docker
+
+```powershell
+cd app
+docker build . -t ml-joao-pedro
+```
+
+4 - Execute na porta 5000
+```powershell
+docker run -p 5000:5000 ml-joao-pedro
+```
