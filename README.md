@@ -24,4 +24,18 @@ Seguiremos as seguintes etapas.
 5. Deployment.
 
 
+## Executando
 
+Execute no shell de preferencia:
+
+```powershell
+pip install numpy
+pip install flask
+pip install pandas 
+pip install scikit-learn
+pip install seaborn 
+pip install plotly.express
+pip install XGBoost
+```
+
+Após isto, pode executar o notebook normalmente
