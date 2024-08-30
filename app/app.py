@@ -1,4 +1,5 @@
 import pickle
+from wsgiref.simple_server import WSGIServer
 
 import numpy as np
 from flasgger import Swagger, swag_from
@@ -82,4 +83,5 @@ def predict():
 
 
 if __name__ == "__main__":
-    app.run()
+    from waitress import serve
+    serve(app, host="0.0.0.0", port=5000)

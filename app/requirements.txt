@@ -3,3 +3,4 @@ numpy==2.1.0
 pandas==2.2.2
 flasgger==0.9.7.1
 scikit-learn==1.5.1
+waitress==3.0.0
