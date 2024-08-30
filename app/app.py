@@ -6,7 +6,7 @@ from flask import Flask, request, jsonify
 
 app = Flask(__name__)
 # Embora nao seja uma boa ideia usar links relativos, como é uma POC, é ok
-model = pickle.load(open("..\\ml\\trained-model\\model.pkl", "rb"))
+model = pickle.load(open("model.pkl", "rb"))
 
 swagger_template = {
     "swagger": "2.0",

@@ -26,21 +26,21 @@ Estrutura básica do projeto abaixo:
 projeto-ciencia-de-dados
 │   README.md
 └───ml
-│   │   data
-│   │   CRISP-DM Projeto Final.ipynb
-│   └───modelo
-│       │   normalizer.pkl
-│       │   model.pkl
-│       │   encoder.pkl
-│   
-└───app
+│   └─── data
+│       └─── Life Expectancy Data.csv
+│       CRISP-DM Projeto Final.ipynb
+└─── app
     │   **.py
-    |   Dockerfile
+    └─── docs
+        └─── predict.yaml
+    |   normalizer.pkl
+    |   model.pkl
+    |   encoder.pkl
 ```
 
 Pasta ml = Pasta de machine learning e modelo estatistico
 
-Pasta app = Aplicacao flask para servir o modelo. Disponibilizada com docker. A imagem está disponivel no registry.
+Pasta app = Aplicacao flask para servir o modelo. Disponibilizada com docker. A imagem está disponivel no registry
 
 É valido ressaltar que a api está disponivel em EM_BREVE
 
@@ -64,7 +64,7 @@ O deploy é feito via docker. Foi optado por nao usar compose, para simplicidade
 cd ml
 pip install numpy
 pip install flask
-pip install pandas 
+pip install pandas
 pip install scikit-learn
 pip install seaborn 
 pip install plotly.express
@@ -81,6 +81,9 @@ jupyter notebook
 
 ```powershell
 cd app
+cp ml/trained-model/encoder.pkl app/encoder.pkl
+cp ml/trained-model/model.pkl app/model.pkl
+cp ml/trained-model/normalizer.pkl app/normalizer.pkl
 docker build . -t ml-joao-pedro
 ```
 
