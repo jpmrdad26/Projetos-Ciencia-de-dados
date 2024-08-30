@@ -38,11 +38,9 @@ projeto-ciencia-de-dados
     |   encoder.pkl
 ```
 
-Pasta ml = Pasta de machine learning e modelo estatistico
+Pasta `ml` = Pasta de machine learning e modelo estatistico
 
-Pasta app = Aplicacao flask para servir o modelo. Disponibilizada com docker. A imagem está disponivel no registry
-
-É valido ressaltar que a api está disponivel em EM_BREVE
+Pasta `app` = Aplicacao flask para servir o modelo. Disponibilizada em uma imagem do docker
 
 ## Machine Learning - Pasta ml
 
@@ -54,9 +52,9 @@ O arquivo utilizado para este projeto é `Life Expectancy Data.csv`, presente de
 
 ### Deployment
 
-O deploy é feito via docker. Foi optado por nao usar compose, para simplicidade. Entretanto, nada impediria de usar compose, charts ou qualquer outra estrutura no k8s.
+O deploy é feito via docker. Foi optado por nao usar compose, para simplicidade. Entretanto, nada impediria de usar compose, helm charts ou qualquer outra estrutura no k8s.
 
-## Executando
+## Construir
 
 1 - A partir da raiz do projeto, gere o modelo. Execute no shell de preferencia:
 
@@ -81,9 +79,6 @@ jupyter notebook
 
 ```powershell
 cd app
-cp ml/trained-model/encoder.pkl app/encoder.pkl
-cp ml/trained-model/model.pkl app/model.pkl
-cp ml/trained-model/normalizer.pkl app/normalizer.pkl
 docker build . -t ml-joao-pedro
 ```
 
