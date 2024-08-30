@@ -62,14 +62,14 @@ def predict():
     if array is None:
         return jsonify({
             "data": None,
-            "mensagens": ["Data é obrigatório"]
+            "mensagens": ["data é obrigatório"]
         }), 400
 
     # if the input array is not the required size
     elif len(array) != 15:
         return jsonify({
             "data": None,
-            "mensagens": ["Data deve ter 15 posições, conforme documentação"]
+            "mensagens": ["data deve ter 15 posições, conforme documentação"]
         }), 400
 
     else:

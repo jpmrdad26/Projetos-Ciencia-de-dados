@@ -1,14 +1,13 @@
-description: "This API will be used to predict the class of the uploaded image"
+description: "Expectativa de Vida - Previsão"
 tags:
-  - name: Predict the Wine Quality
+  - name: Previsão da expectativa de vida
 consumes:
   - application/json
 produces:
   - application/json
 parameters:
-  - description: "The body should contain the array containing the 11 input parameters in the order of: 
-  fixed acidity, volatile acidity, citric acid, residual sugar, chlorides, free sulfur dioxide, total sulfur dioxide, 
-  density, ph, sulphates, alcohol"
+  - description: "O request deve conter um array contendo 15 parametros em ordem: 
+  Country, Year, Status, Life expectancy, Adult Mortality, infant deaths, Alcohol, percentage expenditure, BMI, Polio, Diphtheria, HIV/AIDS, thinness 1-19 years, thinness 5-9 years, Income composition of resources, Schooling"
     in: "body"
     name: "body"
     schema:
@@ -19,46 +18,31 @@ parameters:
           type: array
           description: Input Array
       example:
-        data: [ 7, 0.27, 0.36, 20.7, 0.045, 45, 170, 1.001, 3, 0.45, 6 ]
+        data: [ -1.72,-1.63,0.47,1.34,0.48,-1.17,-0.38,-1.33,-2.52,-2.47,-0.31,-0.56,-0.52,-1.44,-2.01 ]
     required: true
 responses:
   "200":
-    description: Previsão efetuada com sucesso
-    type: object
-    properties:
-      data:
-        type: object
-        properties:
-          previsao:
-            format: int64
-            type: integer
-      mensagens:
-        type: array
-        items:
-          type: string
+    description: Previsão efetuada com sucesso. Previsao em anos
+    schema:
+      title: Valid Prediction Response
+      type: object
+      example:
+        data:
+          previsao: 99
+        mensagens: [ ]
   "400":
     description: Erro de validação negocial
-    content:
-      application/problem+json:
-        schema:
-          type: object
-          properties:
-            data:
-              default: "null"
-              type: object
-            mensagens:
-              default: [ ]
-              type: array
+    schema:
+      type: object
+      example:
+        data: null
+        mensagens:
+          - "data é obrigatório"
   "500":
-    description: "Erros internos, não tratados e não esperados"
-    content:
-      application/problem+json:
-        schema:
-          type: object
-          properties:
-            data:
-              default: "null"
-              type: object
-            mensagens:
-              default: [ ]
-              type: array
+    description: Erro catastrófico, não programado e não tratado
+    schema:
+      type: object
+      example:
+        data: null
+        mensagens:
+          - "Erro ao carregar o modelo. Ex: File not found"
